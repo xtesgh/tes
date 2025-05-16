@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram DM</title>
+  <!-- Favicon classic -->
+  <!-- <link rel="icon" href="https://item.rf.gd/img.ico" type="image/x-icon"> -->
+  <!-- PNG -->
+  <link rel="icon" href="https://img.icons8.com/?size=192&id=bh8L0hocH1mA&format=png" type="image/png">
+  <!-- Favicon Apple Devices -->
+  <link rel="apple-touch-icon" href="https://img.icons8.com/?size=192&id=bh8L0hocH1mA&format=png">
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column; /* Vertical layout */
+      align-items: center;    /* Center horizontally */
+      gap: 20px;              /* Space between buttons */
+    }
+
+    .button, .button2 {
+      padding: 15px 30px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+      width: 200px;            /* Uniform width */
+      text-align: center;
+    }
+
+    .button {
+      background-color: #E1306C; /* Pink magenta */
+    }
+    .button:hover {
+      background-color: #c92a61;
+    }
+
+    .button1 {
+      background-color: #00c853; /* Neon green */
+    }
+    .button1:hover {
+      background-color: #00a144;
+    }
+    
+    .button2 {
+      background-color: #007bff; /* Light blue */
+    }
+    .button2:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a class="button" id="instaDM" href="#DM">Open Instagram DM</a>
+    <a class="button1" id="myDM" href="#me">DM me</a>
+    <a class="button2" id="profile" href="#profile">My Profile</a>
+  </div>
+
+
+  <script>
+    function openInstagramDM(e) {
+      e.preventDefault();
+
+      const timeout = setTimeout(() => {
+        // Fallback if the app doesn't open
+        window.location.href = 'https://www.instagram.com/direct/inbox/';
+      }, 600); // wait 600ms
+
+      // Try to open the app
+      window.location.href = 'instagram://direct-inbox';
+
+      // Cancel fallback if the app opens successfully
+      window.addEventListener('blur', () => {
+        clearTimeout(timeout);
+      });
+    }
+
+    function openDM(e) {
+      e.preventDefault();
+
+      const timeout = setTimeout(() => {
+        // Fallback: open the user's message on web
+        window.location.href = 'https://www.instagram.com/direct/t/17845127097460238';
+      }, 600); // wait 600ms
+
+      // Try to open the app directly to user's message
+      window.location.href = 'instagram://direct-thread?user_id=17845127097460238';
+
+      // Cancel fallback if the app opens successfully
+      window.addEventListener('blur', () => {
+        clearTimeout(timeout);
+      });
+    }
+
+    function openProfile(e) {
+      e.preventDefault();
+
+      const timeout = setTimeout(() => {
+        // Fallback: open the user's profile on web
+        window.location.href = 'https://www.instagram.com/akjgmau';
+      }, 600); // wait 600ms
+
+      // Attempt to open the Instagram app directly to user's profile
+      window.location.href = 'instagram://user?username=akjgmau';
+
+      // Cancel fallback if the app opens successfully
+      window.addEventListener('blur', () => {
+        clearTimeout(timeout);
+      });
+    }
+
+    // Event listeners
+    document.getElementById('instaDM').addEventListener('click', openInstagramDM);
+    document.getElementById('myDM').addEventListener('click', openDM);
+    document.getElementById('profile').addEventListener('click', openProfile);
+  </script>
+
+</body>
+</html>
